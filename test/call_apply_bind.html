@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script type="text/javascript" src="../dist/y24-utils.js"></script>
+    <script type="text/javascript">
+      /*
+  全局变量:window的属性(var)
+  全局函数:window的方法
+  */
+      function fn(a, b) {
+        this.xxx = 3;
+        console.log(a, b, this, arguments.length);
+      }
+      const obj = {
+        m: 0,
+      };
+      // fn.call(obj,3,4)
+      // fn.apply(obj,[5,4])
+      // fn.bind(obj)(3, 4);
+      // fn.bind(obj, 5)(3, 4);
+      // fn(1, 2);
+      yUtils.call(fn,obj,3,4)
+      yUtils.apply(fn,obj,[5,4])
+      yUtils.bind(fn,obj)(3, 4);
+      yUtils.bind(fn,obj, 5)(3, 4);
+     
+    </script>
+  </body>
+</html>

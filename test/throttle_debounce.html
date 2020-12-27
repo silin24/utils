@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #throttle {
+      color: brown;
+    }
+    #debounce {
+      color: pink;
+    }
+  </style>
+</head>
+<body>
+  <button id="throttle">测试函数节流</button>
+  <button id="debounce">测试函数防抖</button>
+
+  <script src="https://cdn.bootcss.com/lodash.js/4.17.15/lodash.js"></script>
+  <script type="text/javascript">
+    function throttle(callback,delay) {
+      let pre = 0
+      return function (event) {
+        console.log('throttle');
+        const current = Date.now()
+        if (current - pre > delay) {
+          callback.call(this,event)
+          pre = Date.now()
+        }
+      }
+    }
+    function debounce(callback,delay) {
+      return function (event) {
+        // if (callback.setTimeoutId) {
+        if (callback.hasOwnProperty('setTimeoutId')) {
+          clearTimeout(callback.setTimeoutId)
+        }
+       callback.setTimeoutId = setTimeout(() => {
+          callback.call(this,event)
+          delete callback.setTimeoutId
+        }, delay);
+    }
+    }
+  </script>
+  <script type="text/javascript">
+     function handleClick(event) { // 处理事件的回调
+      console.log('处理点击事件', this, event)
+    }
+
+    //  document.getElementById('throttle').onclick = _.throttle(handleClick, 2000, { 'trailing': false })
+    //  document.getElementById('debounce').onclick = _.debounce(handleClick, 2000)
+     document.getElementById('throttle').onclick = throttle(handleClick, 2000)
+     document.getElementById('debounce').onclick = debounce(handleClick, 2000)
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "y24_utils",
+  "version": "1.0.1",
+  "main": "dist/y24-utils.js",
+  "description": "工具函数库",
+  "keywords": [
+    "utils",
+    "array",
+    "object",
+    "function"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --watch"
+  },
+  "devDependencies": {
+    "webpack": "^5.11.0",
+    "webpack-cli": "^4.3.0"
+  },
+  "dependencies": {}
+}
